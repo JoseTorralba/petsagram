@@ -1,0 +1,111 @@
+.container {
+  background-color: #f2f4f8;
+
+  /* display: grid; */
+  grid-column: col-start 2 / full-end;
+}
+
+.header {
+  font-size: 2.4rem;
+  margin-bottom: 2rem;
+}
+
+.section {
+  padding: 4rem 6rem;
+}
+
+.form {
+  background-color: #fff;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  padding: 4rem;
+}
+
+.nameInput,
+.emailInput,
+.passwordInput {
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+  height: 5rem;
+  width: 100%;
+  padding: 0 4rem;
+}
+
+.passwordInputDiv {
+  position: relative;
+}
+
+.nameInput {
+  margin-bottom: 2rem;
+  background: url('../assets/svg/badgeIcon.svg') #ffffff 1% center no-repeat;
+}
+
+.emailInput {
+  margin-bottom: 2rem;
+  background: url('../assets/svg/personIcon.svg') #ffffff 1% center no-repeat;
+}
+
+.passwordInput {
+  margin-bottom: 2rem;
+  background: url('../assets/svg/lockIcon.svg') #ffffff 1% center no-repeat;
+}
+
+.passwordOptions {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 3rem;
+}
+
+.forgotPassword,
+.visibleDiv {
+  align-items: center;
+  display: flex;
+}
+
+.forgotPassword {
+  color: #e20074;
+  text-decoration: none;
+}
+
+.visibleText,
+.visibleIcon {
+  cursor: pointer;
+  /* padding: 1rem; */
+}
+
+.visibleIcon {
+  margin-right: 1rem;
+}
+
+.signUpButton {
+  align-items: center;
+  background: #e20074;
+  border: none;
+  border-radius: 2rem;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 0.8rem 4rem;
+  margin-bottom: 2rem;
+}
+
+.linkDiv {
+  text-align: center;
+}
+
+.registerLink {
+  color: #e20074;
+  font-size: 1.5rem;
+  font-weight: 600;
+
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 56.25em) {
+  .container {
+    grid-column: center-start / center-end;
+  }
+}

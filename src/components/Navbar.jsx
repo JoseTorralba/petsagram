@@ -20,10 +20,15 @@ const Navbar = () => {
 
       <nav className={styles.navbar}>
         <ul className={styles.list}>
-          <li className={styles.item} onClick={() => navigate('/')}>
+          <li
+            className={
+              pathMatchRoute('/') ? `${styles.itemActive}` : `${styles.item}`
+            }
+            onClick={() => navigate('/')}
+          >
             <HomeIcon
               className={styles.icon}
-              fill={pathMatchRoute('/') ? '#2c2c2c' : '#8f8f8f'}
+              fill={pathMatchRoute('/') ? '#fff' : '#8f8f8f'}
               width='36px'
               height='36px'
             />
@@ -36,16 +41,23 @@ const Navbar = () => {
             </p>
           </li>
 
-          <li className={styles.item} onClick={() => navigate('/sign-in')}>
+          <li
+            className={
+              pathMatchRoute('/create-post')
+                ? `${styles.itemActive}`
+                : `${styles.item}`
+            }
+            onClick={() => navigate('/create-post')}
+          >
             <AddIcon
               className={styles.icon}
-              fill={pathMatchRoute('/sign-in') ? '#2c2c2c' : '#8f8f8f'}
+              fill={pathMatchRoute('/create-post') ? '#fff' : '#8f8f8f'}
               width='36px'
               height='36px'
             />
             <p
               className={
-                pathMatchRoute('/sign-in')
+                pathMatchRoute('/create-post')
                   ? `${styles.active}`
                   : `${styles.name}`
               }
@@ -54,10 +66,17 @@ const Navbar = () => {
             </p>
           </li>
 
-          <li className={styles.item} onClick={() => navigate('/profile')}>
+          <li
+            className={
+              pathMatchRoute('/profile')
+                ? `${styles.itemActive}`
+                : `${styles.item}`
+            }
+            onClick={() => navigate('/profile')}
+          >
             <UserIcon
               className={styles.icon}
-              fill={pathMatchRoute('/profile') ? '#2c2c2c' : '#8f8f8f'}
+              fill={pathMatchRoute('/profile') ? '#fff' : '#8f8f8f'}
               width='36px'
               height='36px'
             />

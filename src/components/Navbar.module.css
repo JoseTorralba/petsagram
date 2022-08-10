@@ -1,11 +1,12 @@
 .container {
   background-color: #ffffff;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   display: flex;
   flex-direction: column;
   grid-column: full-start / col-end 1;
   height: 100vh;
   justify-content: center;
-  padding-left: 4rem;
+  /* padding-left: 4rem; */
   z-index: 1000;
 }
 
@@ -18,6 +19,7 @@
   font-size: 2rem;
   font-weight: 600;
   margin-bottom: 5rem;
+  padding-left: 4rem;
 }
 
 .list {
@@ -29,13 +31,25 @@
   flex-direction: column;
 }
 
-.item {
+.item,
+.itemActive {
   font-size: 1.8rem;
   font-weight: 600;
   cursor: pointer;
   display: flex;
   align-items: center;
+
+  /* padding-left: 4rem; */
+
+  padding: 3rem;
 }
+
+.itemActive {
+  background-color: #e20074;
+  color: #fff !important;
+  transition: all 0.2s;
+}
+
 .icon {
   margin-right: 2rem;
 }
@@ -45,8 +59,8 @@
 }
 
 .active {
-  color: #2c2c2c;
-  transition: all 0.3s;
+  color: #fff;
+  transition: all 0.2s;
 }
 
 @media only screen and (max-width: 75em) {
@@ -57,7 +71,7 @@
     align-items: center;
     background-color: #ffffff;
     bottom: 0;
-    height: 8.5rem;
+    height: min-content;
     left: 0;
     padding-left: 0;
     position: fixed;
@@ -70,9 +84,8 @@
   }
 
   .navbar {
-    margin-top: 0.75rem;
+    margin-top: 0;
     width: 100%;
-    /* overflow-y: hidden; */
   }
 
   .list {
@@ -86,12 +99,15 @@
     align-items: center;
   }
 
-  .item {
+  .item,
+  .itemActive {
     font-size: 1.4rem;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 1.4rem 5rem;
+    height: max-content;
   }
 
   .icon {
