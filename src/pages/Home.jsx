@@ -11,6 +11,9 @@ import {
 import { db } from '../firebase.config';
 import { toast } from 'react-toastify';
 
+import PostItem from '../components/PostItem';
+import styles from './Home.module.css';
+
 const Home = () => {
   const [posts, setPosts] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -48,16 +51,18 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <>
-          {posts.map(post => (
-            <p key={post.id}>{post.data.petName}</p>
-          ))}
-        </>
-      )}
+    <div className={styles.container}>
+      <div className={styles.grid}>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <>
+            {posts.map(post => (
+              <PostItem post={post.data} id={post.id} key={post.id} />
+            ))}
+          </>
+        )}
+      </div>
     </div>
   );
 };

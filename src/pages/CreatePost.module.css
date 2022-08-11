@@ -1,5 +1,5 @@
 .container {
-  grid-column: col-start 3 / col-end 8;
+  grid-column: center-start / center-end;
   padding: 6rem 0;
 }
 
@@ -66,8 +66,8 @@
   width: 100%;
 }
 
-@media only screen and (max-width: 56.25em) {
+@media only screen and (max-width: 75em) {
   .container {
-    grid-column: center-start / center-end;
+    grid-column: col-start 2 / col-end 7;
   }
 }

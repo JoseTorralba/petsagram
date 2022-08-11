@@ -1,6 +1,6 @@
 .container {
   background-color: #f2f4f8;
-  grid-column: col-start 3 / col-end 8;
+  grid-column: center-start / center-end;
   padding: 6rem 0;
 }
 

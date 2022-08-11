@@ -9,10 +9,9 @@
 
 .app {
   display: grid;
-  /* Might not be needed */
 
   grid-template-columns:
-    [full-start] minmax(auto, 1fr)
+    [sidebar-start] 20vw [sidebar-end full-start] minmax(auto, 1fr)
     [center-start] repeat(8, [col-start] minmax(min-content, 1fr) [col-end])
     [center-end] 1fr [full-end];
 }
@@ -37,8 +36,17 @@ body {
 }
 
 /* Might Change This Later */
-@media only screen and (max-width: 56.25em) {
+@media only screen and (max-width: 75em) {
   body {
     padding-bottom: 10rem;
+  }
+
+  .app {
+    display: grid;
+
+    grid-template-columns:
+      minmax(auto, 1fr)
+      [center-start] repeat(8, [col-start] minmax(min-content, 1fr) [col-end])
+      [center-end] 1fr [full-end];
   }
 }

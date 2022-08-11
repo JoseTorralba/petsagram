@@ -92,6 +92,9 @@ const Navbar = () => {
           </li>
         </ul>
       </nav>
+
+      {/* Dark Mode will be added here */}
+      <div className={styles.whiteSpace}>&nbsp;</div>
     </div>
   );
 };

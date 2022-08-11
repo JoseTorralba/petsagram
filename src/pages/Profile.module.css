@@ -1,5 +1,5 @@
 .container {
-  grid-column: col-start 3 / col-end 8;
+  grid-column: center-start / center-end;
   padding: 6rem 0;
 }
 
@@ -112,6 +112,13 @@
   display: inline-block;
   font-weight: 600;
   margin-right: 1rem;
+}
+
+/* Mess arounf with these media queries, going somewhere with the Profile css one */
+@media only screen and (max-width: 75em) {
+  .container {
+    grid-column: col-start 2 / col-end 7;
+  }
 }
 
 @media only screen and (max-width: 56.25em) {
