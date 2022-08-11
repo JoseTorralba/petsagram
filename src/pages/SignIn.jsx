@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
+import OAuth from '../components/OAuth';
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg';
 import visibilityIcon from '../assets/svg/visibilityIcon.svg';
 import { toast } from 'react-toastify';
@@ -112,7 +113,8 @@ function SignIn() {
               </button>
             </div>
 
-            {/* OAuth */}
+            <OAuth />
+
             <div className={styles.linkDiv}>
               <Link to='/sign-up' className={styles.registerLink}>
                 Sign Up Instead

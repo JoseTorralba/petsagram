@@ -73,7 +73,7 @@
     align-items: center;
     background-color: #ffffff;
     bottom: 0;
-    height: min-content;
+    height: max-content;
     left: 0;
     padding-left: 0;
     position: fixed;

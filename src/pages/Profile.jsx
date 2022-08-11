@@ -20,6 +20,7 @@ function Profile() {
     'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
   );
 
+  console.log(auth.currentUser);
   const { name } = formData;
 
   const navigate = useNavigate();
@@ -65,18 +66,23 @@ function Profile() {
   // Add a Loading Spinner
   const imgUpdate = async () => {
     console.log('Image will update');
-    const storage = getStorage();
 
-    const fileRef = ref(storage, auth.currentUser.uid + '.png');
+    try {
+      const storage = getStorage();
 
-    await uploadBytes(fileRef, photo);
-    const photoURL = await getDownloadURL(fileRef);
+      const fileRef = ref(storage, auth.currentUser.uid + '.png');
 
-    updateProfile(auth.currentUser, { photoURL });
+      await uploadBytes(fileRef, photo);
+      const photoURL = await getDownloadURL(fileRef);
 
-    toast.success(
-      'Image file has been uploaded! Changes may take a few minutes to display.'
-    );
+      updateProfile(auth.currentUser, { photoURL });
+
+      toast.success(
+        'Image uploaded! Changes may take a few minutes to display.'
+      );
+    } catch (err) {
+      toast.error('Image must be at least 2MB or less!');
+    }
   };
 
   useEffect(() => {
@@ -113,17 +119,31 @@ function Profile() {
 
       {/* Image and Name */}
       <main className={styles.profile}>
-        <img src={photoURL} alt='Profile Avatar' className={styles.img} />
+        <div className={styles.imgDiv}>
+          <img
+            src={photoURL ? photoURL : auth.currentUser.photoURL}
+            alt='Profile Avatar'
+            className={styles.img}
+          />
+        </div>
 
         {changeDetails && (
           <div>
-            <input type='file' onChange={handleImgChange} />
-            <button onClick={imgUpdate}>Upload</button>
+            <p className={styles.changeImgText}>Change Profile Image</p>
+            <input
+              className={styles.changeImgInput}
+              type='file'
+              onChange={handleImgChange}
+            />
+            <button onClick={imgUpdate} className={styles.uploadButton}>
+              Upload
+            </button>
           </div>
         )}
 
-        <div className='profileCard'>
+        <div>
           <form>
+            {changeDetails && <p className={styles.editName}>Edit Name:</p>}
             <input
               type='text'
               id='name'

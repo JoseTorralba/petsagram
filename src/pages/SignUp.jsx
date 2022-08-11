@@ -8,6 +8,7 @@ import {
 
 import { setDoc, doc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase.config';
+import OAuth from '../components/OAuth';
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg';
 import visibilityIcon from '../assets/svg/visibilityIcon.svg';
 import { toast } from 'react-toastify';
@@ -130,7 +131,7 @@ function SignIn() {
               </button>
             </div>
 
-            {/* OAuth */}
+            <OAuth />
 
             <div className={styles.linkDiv}>
               <Link to='/sign-in' className={styles.registerLink}>
