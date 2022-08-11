@@ -5,7 +5,7 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg';
 import visibilityIcon from '../assets/svg/visibilityIcon.svg';
-
+import { toast } from 'react-toastify';
 import styles from './SignIn.module.css';
 
 function SignIn() {
@@ -42,8 +42,19 @@ function SignIn() {
       if (userCredential.user) {
         navigate('/');
       }
+
+      // Auth Error Handler
     } catch (err) {
-      console.log(err);
+      switch (err.code) {
+        case 'auth/user-not-found':
+          return toast.error('This user does not exist!');
+
+        case 'auth/wrong-password':
+          return toast.error('Wrong password! Please try again.');
+
+        default:
+          return toast.error('An error has occurred, please try again!');
+      }
     }
   };
 
@@ -62,6 +73,7 @@ function SignIn() {
               id='email'
               value={email}
               onChange={onChange}
+              required
             />
 
             <div>

@@ -2,7 +2,7 @@
   background-color: #f2f4f8;
 
   /* display: grid; */
-  grid-column: col-start 2 / full-end;
+  grid-column: col-start 3 / col-end 8;
 }
 
 .header {
@@ -11,7 +11,7 @@
 }
 
 .section {
-  padding: 4rem 6rem;
+  padding: 6rem 0;
 }
 
 .form {

@@ -5,11 +5,12 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
 } from 'firebase/auth';
+
 import { setDoc, doc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase.config';
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg';
 import visibilityIcon from '../assets/svg/visibilityIcon.svg';
-
+import { toast } from 'react-toastify';
 import styles from './SignUp.module.css';
 
 function SignIn() {
@@ -19,7 +20,7 @@ function SignIn() {
     email: '',
     password: '',
   });
-
+  const auth = getAuth();
   const { name, email, password } = formData;
 
   const navigate = useNavigate();
@@ -36,7 +37,6 @@ function SignIn() {
     e.preventDefault();
 
     try {
-      const auth = getAuth();
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
@@ -56,8 +56,21 @@ function SignIn() {
       await setDoc(doc(db, 'users', user.uid), formDataCopy);
 
       navigate('/');
+
+      // Auth Error Handler
     } catch (err) {
-      console.log(err);
+      switch (err.code) {
+        case 'auth/email-already-in-use':
+          return toast.error('Email is already in use!');
+
+        case 'auth/weak-password':
+          return toast.error(
+            'Password should be at least 6 or more characters long!'
+          );
+
+        default:
+          return toast.error('An error has occurred, please try again later!');
+      }
     }
   };
 
@@ -76,6 +89,7 @@ function SignIn() {
               id='name'
               value={name}
               onChange={onChange}
+              required
             />
 
             <input
@@ -85,6 +99,7 @@ function SignIn() {
               id='email'
               value={email}
               onChange={onChange}
+              required
             />
 
             <input
@@ -94,8 +109,8 @@ function SignIn() {
               id='password'
               value={password}
               onChange={onChange}
+              required
             />
-
             <div
               className={styles.visibleDiv}
               onClick={() => setShowPassword(prevState => !prevState)}

@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&display=swap');
 *,
-*::after,
-*::before {
+*::before,
+*::after {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: inherit;
 }
 
 .app {
   display: grid;
   /* Might not be needed */
-  /* grid-template-rows: auto auto; */
+
   grid-template-columns:
     [full-start] minmax(auto, 1fr)
     [center-start] repeat(8, [col-start] minmax(min-content, 1fr) [col-end])
@@ -33,4 +33,5 @@ body {
   background-color: #f2f4f8;
   margin: 0;
   box-sizing: border-box;
+  font-size: 1.6rem;
 }

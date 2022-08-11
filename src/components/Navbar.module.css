@@ -4,9 +4,11 @@
   display: flex;
   flex-direction: column;
   grid-column: full-start / col-end 1;
+
+  /* Height prevents grid-row from working, might have to go with position fixed, can still work that way */
   height: 100vh;
+  /* grid-row: 1 -1; */
   justify-content: center;
-  /* padding-left: 4rem; */
   z-index: 1000;
 }
 
@@ -16,7 +18,7 @@
 }
 
 .title {
-  font-size: 2rem;
+  font-size: 2.6rem;
   font-weight: 600;
   margin-bottom: 5rem;
   padding-left: 4rem;
@@ -93,7 +95,7 @@
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
 
     flex-direction: row;
     align-items: center;
@@ -106,8 +108,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1.4rem 5rem;
-    height: max-content;
+    width: 100%;
   }
 
   .icon {
