@@ -1,17 +1,13 @@
 .container {
   background-color: #f2f4f8;
-
-  /* display: grid; */
   grid-column: col-start 3 / col-end 8;
+  padding: 6rem 0;
 }
 
 .header {
-  font-size: 2.4rem;
+  font-size: 3rem;
+  font-weight: 600;
   margin-bottom: 2rem;
-}
-
-.section {
-  padding: 6rem 0;
 }
 
 .form {
@@ -20,9 +16,11 @@
   padding: 4rem;
 }
 
-.nameInput,
 .emailInput,
 .passwordInput {
+  font-family: inherit;
+  font-weight: inherit;
+  font-weight: 400;
   border-radius: 0.5rem;
   margin-bottom: 2rem;
   height: 5rem;

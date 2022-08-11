@@ -158,6 +158,10 @@ function Profile() {
             />
           </form>
         </div>
+
+        <Link to='/create-post'>
+          <p>Upload an image of your pet!</p>
+        </Link>
       </main>
     </div>
   );
