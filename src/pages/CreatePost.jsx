@@ -13,6 +13,7 @@ import { toast } from 'react-toastify';
 import { v4 as uuidv4 } from 'uuid';
 
 import styles from './CreatePost.module.css';
+import Loading from '../components/Loading';
 
 const CreatePost = () => {
   const [loading, setLoading] = useState(false);
@@ -130,7 +131,7 @@ const CreatePost = () => {
     }
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loading />;
 
   return (
     <div className={styles.container}>

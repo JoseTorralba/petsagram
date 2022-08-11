@@ -11,6 +11,7 @@ import {
 import { db } from '../firebase.config';
 import { toast } from 'react-toastify';
 
+import Loading from '../components/Loading';
 import PostItem from '../components/PostItem';
 import styles from './Home.module.css';
 
@@ -54,7 +55,7 @@ const Home = () => {
     <div className={styles.container}>
       <div className={styles.grid}>
         {loading ? (
-          <p>Loading...</p>
+          <Loading />
         ) : (
           <>
             {posts.map(post => (

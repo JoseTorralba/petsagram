@@ -115,11 +115,18 @@
 
   .icon {
     margin-right: 0;
-    margin-bottom: 1rem;
+    margin-bottom: 0.4rem;
   }
 
   .whiteSpace {
     display: none;
+  }
+}
+
+@media only screen and (max-width: 37.5em) {
+  .item,
+  .itemActive {
+    padding: 0.8rem 0;
   }
 }
 
