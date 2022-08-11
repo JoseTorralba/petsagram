@@ -57,6 +57,8 @@ const CreatePost = () => {
   const onSubmit = async e => {
     e.preventDefault();
 
+    setLoading(true);
+
     // Stores Image in Firebase
     const storeImage = async image => {
       return new Promise((resolve, reject) => {
@@ -109,6 +111,7 @@ const CreatePost = () => {
     await addDoc(collection(db, 'posts'), formDataCopy);
 
     // setLoading(false)
+    setLoading(false);
     toast.success('Post Created!');
     navigate('/');
   };

@@ -27,7 +27,7 @@ const Home = () => {
         const postsRef = collection(db, 'posts');
 
         // Create Query
-        const q = query(postsRef, orderBy('timestamp', 'desc'), limit(10));
+        const q = query(postsRef, orderBy('timestamp', 'desc'), limit(9));
 
         // Executes Query
         const querySnap = await getDocs(q);

@@ -1,29 +1,71 @@
 import { useState, useEffect } from 'react';
-import { getAuth, updateProfile } from 'firebase/auth';
-import { updateDoc, doc } from 'firebase/firestore';
-import { db } from '../firebase.config';
 import { Link, useNavigate } from 'react-router-dom';
-
+import { getAuth, updateProfile } from 'firebase/auth';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { toast } from 'react-toastify';
+import { db } from '../firebase.config';
+import {
+  updateDoc,
+  doc,
+  collection,
+  getDocs,
+  query,
+  where,
+  orderBy,
+  deleteDoc,
+} from 'firebase/firestore';
 
+import PostItem from '../components/PostItem';
+import Loading from '../components/Loading';
 import styles from './Profile.module.css';
+import avatarImg from '../assets/img/avatar.png';
+import { toast } from 'react-toastify';
 
 function Profile() {
   const auth = getAuth();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
   const [changeDetails, setChangeDetails] = useState(false);
+  const [posts, setPosts] = useState(null);
+  const [photo, setPhoto] = useState(null);
+  const [photoURL, setPhotoURL] = useState(avatarImg);
   const [formData, setFormData] = useState({
     name: auth.currentUser.displayName,
   });
-  const [photo, setPhoto] = useState(null);
-  const [photoURL, setPhotoURL] = useState(
-    'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
-  );
-
-  console.log(auth.currentUser);
   const { name } = formData;
 
-  const navigate = useNavigate();
+  // Fetches Current User Post
+  useEffect(() => {
+    const fetchUserPosts = async () => {
+      const postsRef = collection(db, 'posts');
+
+      const q = query(
+        postsRef,
+        where('userRef', '==', auth.currentUser.uid),
+        orderBy('timestamp', 'desc')
+      );
+      const querySnap = await getDocs(q);
+
+      const posts = [];
+
+      querySnap.forEach(doc => {
+        return posts.push({
+          id: doc.id,
+          data: doc.data(),
+        });
+      });
+
+      setPosts(posts);
+      setLoading(false);
+    };
+
+    fetchUserPosts();
+  }, [auth.currentUser.uid]);
+
+  useEffect(() => {
+    if (auth.currentUser?.photoURL) {
+      setPhotoURL(auth.currentUser.photoURL);
+    }
+  }, [auth.currentUser]);
 
   const onLogout = () => {
     auth.signOut();
@@ -33,7 +75,7 @@ function Profile() {
   const onSubmit = async () => {
     try {
       if (auth.currentUser.displayName !== name) {
-        // Update Display Name in Firebase
+        // Updates Display Name in Firebase
         await updateProfile(auth.currentUser, {
           displayName: name,
         });
@@ -65,13 +107,9 @@ function Profile() {
 
   // Add a Loading Spinner
   const imgUpdate = async () => {
-    console.log('Image will update');
-
     try {
       const storage = getStorage();
-
       const fileRef = ref(storage, auth.currentUser.uid + '.png');
-
       await uploadBytes(fileRef, photo);
       const photoURL = await getDownloadURL(fileRef);
 
@@ -85,11 +123,16 @@ function Profile() {
     }
   };
 
-  useEffect(() => {
-    if (auth.currentUser?.photoURL) {
-      setPhotoURL(auth.currentUser.photoURL);
-    }
-  }, [auth.currentUser]);
+  // Deletes Post
+  const onDelete = () => {
+    console.log('Post Deleted!');
+  };
+
+  const onEdit = () => {
+    console.log('Editing Post...');
+  };
+
+  if (loading) return <Loading />;
 
   return (
     <div className={styles.container}>
@@ -128,13 +171,14 @@ function Profile() {
         </div>
 
         {changeDetails && (
-          <div>
+          <div className={styles.changeImgDiv}>
             <p className={styles.changeImgText}>Change Profile Image</p>
             <input
               className={styles.changeImgInput}
               type='file'
               onChange={handleImgChange}
             />
+
             <button onClick={imgUpdate} className={styles.uploadButton}>
               Upload
             </button>
@@ -159,9 +203,27 @@ function Profile() {
           </form>
         </div>
 
-        <Link to='/create-post'>
-          <p>Upload an image of your pet!</p>
+        <Link to='/create-post' className={styles.uploadPost}>
+          Upload an image of your pet
         </Link>
+
+        {!loading && posts?.length > 0 && (
+          <>
+            <h3>Your Posts</h3>
+
+            <div className={styles.grid}>
+              {posts.map(post => (
+                <PostItem
+                  post={post.data}
+                  onDelete={onDelete}
+                  onEdit={onEdit}
+                  id={post.id}
+                  key={post.id}
+                />
+              ))}
+            </div>
+          </>
+        )}
       </main>
     </div>
   );
