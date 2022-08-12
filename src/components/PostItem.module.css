@@ -24,15 +24,21 @@
 }
 
 .profileImgDiv {
-  border-radius: 50%;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  display: flex;
+  border-radius: 50%;
   height: 4rem;
-  margin-right: 1.2rem;
-  overflow: hidden;
-  position: relative;
   width: 4rem;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  position: relative;
+  margin-right: 1rem;
 }
+
+/* .userImg {
+  width: 100%;
+} */
 
 .userInfo {
   align-items: center;
@@ -73,6 +79,8 @@
   left: 50%;
   top: -2rem;
   transform: translate(-50%);
+  text-align: center;
+  width: max-content;
 }
 
 .infoDesc {

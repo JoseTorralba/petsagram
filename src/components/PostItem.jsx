@@ -8,9 +8,12 @@ const PostItem = ({ post, id, onDelete, onEdit }) => {
     <div className={styles.postDiv}>
       <div className={styles.profileDiv}>
         <div className={styles.userInfo}>
-          <div className={styles.profileImgDiv}>
-            <img src={post.userImg} alt={post.userName} />
-          </div>
+          <div
+            className={styles.profileImgDiv}
+            style={{
+              backgroundImage: `url(${post.userImg})`,
+            }}
+          ></div>
           <p className={styles.profileName}>{post.userName}</p>
         </div>
 

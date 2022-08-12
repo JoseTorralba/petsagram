@@ -17,7 +17,7 @@ import {
 import PostItem from '../components/PostItem';
 import Loading from '../components/Loading';
 import styles from './Profile.module.css';
-import avatarImg from '../assets/img/avatar.png';
+
 import { toast } from 'react-toastify';
 
 function Profile() {
@@ -27,7 +27,9 @@ function Profile() {
   const [changeDetails, setChangeDetails] = useState(false);
   const [posts, setPosts] = useState(null);
   const [photo, setPhoto] = useState(null);
-  const [photoURL, setPhotoURL] = useState(avatarImg);
+  const [photoURL, setPhotoURL] = useState(
+    'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
+  );
   const [disabled, setDisabled] = useState(true);
   const [formData, setFormData] = useState({
     name: auth.currentUser.displayName,
@@ -171,12 +173,19 @@ function Profile() {
 
       {/* Image and Name */}
       <main className={styles.profile}>
-        <div className={styles.imgDiv}>
-          <img
+        <div
+          className={styles.profileImgDiv}
+          style={{
+            backgroundImage: `url(${
+              photoURL ? photoURL : auth.currentUser.photoURL
+            })`,
+          }}
+        >
+          {/* <img
             src={photoURL ? photoURL : auth.currentUser.photoURL}
             alt='Profile Avatar'
             className={styles.img}
-          />
+          /> */}
         </div>
 
         {changeDetails && (
