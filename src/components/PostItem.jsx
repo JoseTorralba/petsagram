@@ -5,8 +5,6 @@ import shareIcon from '../assets/svg/shareIcon.svg';
 import styles from './PostItem.module.css';
 
 const PostItem = ({ post, id, onDelete, onEdit }) => {
-  console.log(post);
-
   return (
     <div className={styles.postDiv}>
       <div className={styles.profileDiv}>
@@ -18,8 +16,6 @@ const PostItem = ({ post, id, onDelete, onEdit }) => {
         </div>
 
         <div>
-          <img src={shareIcon} alt='share icon' className={styles.postIcon} />
-
           {onEdit && (
             <EditIcon
               className={styles.postIcon}
@@ -38,14 +34,13 @@ const PostItem = ({ post, id, onDelete, onEdit }) => {
         </div>
       </div>
 
-      <div
-        className={styles.imgDiv}
-        style={{ backgroundImage: `url(${post.imgUrl})` }}
-      ></div>
+      <div className={styles.imgDiv}>
+        <img className={styles.img} src={post.imgUrl} alt='post' />
+      </div>
 
       <div className={styles.infoDiv}>
-        <p>{post.petName}</p>
-        <div>
+        <p className={styles.infoName}>{post.petName}</p>
+        <div className={styles.infoDesc}>
           <p>{post.description}</p>
         </div>
       </div>

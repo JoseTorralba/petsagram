@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ReactComponent as UserIcon } from '../assets/svg/personIcon.svg';
 import { ReactComponent as AddIcon } from '../assets/svg/addIcon2.svg';
 import { ReactComponent as HomeIcon } from '../assets/svg/homeIcon.svg';
@@ -16,7 +16,9 @@ const Navbar = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Petsagram</h1>
+      <Link to='/' className={styles.title}>
+        Petsagram
+      </Link>
 
       <nav className={styles.navbar}>
         <ul className={styles.list}>

@@ -106,8 +106,8 @@ function SignIn() {
               </Link>
             </div>
 
-            <div className={styles.signUp}>
-              <button className={styles.signUpButton}>
+            <div className={styles.signIn}>
+              <button className={styles.signInButton}>
                 Sign In
                 <ArrowRightIcon fill='#fff' width='25px' height='25px' />
               </button>

@@ -28,11 +28,14 @@ function Profile() {
   const [posts, setPosts] = useState(null);
   const [photo, setPhoto] = useState(null);
   const [photoURL, setPhotoURL] = useState(avatarImg);
+  const [disabled, setDisabled] = useState(true);
   const [formData, setFormData] = useState({
     name: auth.currentUser.displayName,
   });
   const { name } = formData;
 
+  /////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////
   // Fetches Current User Post
   useEffect(() => {
     const fetchUserPosts = async () => {
@@ -61,6 +64,9 @@ function Profile() {
     fetchUserPosts();
   }, [auth.currentUser.uid]);
 
+  /////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////
+  // Fetches Current User Profile Image
   useEffect(() => {
     if (auth.currentUser?.photoURL) {
       setPhotoURL(auth.currentUser.photoURL);
@@ -102,12 +108,14 @@ function Profile() {
   const handleImgChange = e => {
     if (e.target.files[0]) {
       setPhoto(e.target.files[0]);
+      setDisabled(false);
     }
   };
 
   // Add a Loading Spinner
   const imgUpdate = async () => {
     try {
+      setLoading(true);
       const storage = getStorage();
       const fileRef = ref(storage, auth.currentUser.uid + '.png');
       await uploadBytes(fileRef, photo);
@@ -115,6 +123,7 @@ function Profile() {
 
       updateProfile(auth.currentUser, { photoURL });
 
+      setLoading(false);
       toast.success(
         'Image uploaded! Changes may take a few minutes to display.'
       );
@@ -124,20 +133,21 @@ function Profile() {
   };
 
   // Deletes Post
-  const onDelete = () => {
-    console.log('Post Deleted!');
-  };
-
-  const onEdit = () => {
-    console.log('Editing Post...');
+  const onDelete = async postId => {
+    if (window.confirm('Are you sure you want to delete?')) {
+      await deleteDoc(doc(db, 'posts', postId));
+      const updatedPosts = posts.filter(post => post.id !== postId);
+      setPosts(updatedPosts);
+      toast.success('Post successfully deleted!');
+    }
   };
 
   if (loading) return <Loading />;
 
   return (
     <div className={styles.container}>
-      <header className={styles.profileHeader}>
-        <p className={styles.pageHeader}>My Profile</p>
+      <header className={styles.header}>
+        <p className={styles.headerTitle}>My Profile</p>
         <button
           type='button'
           className={styles.logoutButton}
@@ -147,7 +157,6 @@ function Profile() {
         </button>
       </header>
 
-      {/* Header Containing Change Button */}
       <div className={styles.detailsHeading}>
         <p
           className={styles.detailsChange}
@@ -156,7 +165,7 @@ function Profile() {
             setChangeDetails(prevState => !prevState);
           }}
         >
-          {changeDetails ? 'Finish Editing' : 'Edit Profile'}
+          {changeDetails ? 'Save Changes' : 'Edit Profile'}
         </p>
       </div>
 
@@ -179,7 +188,11 @@ function Profile() {
               onChange={handleImgChange}
             />
 
-            <button onClick={imgUpdate} className={styles.uploadButton}>
+            <button
+              onClick={imgUpdate}
+              className={styles.uploadButton}
+              disabled={disabled}
+            >
               Upload
             </button>
           </div>
@@ -203,26 +216,30 @@ function Profile() {
           </form>
         </div>
 
-        <Link to='/create-post' className={styles.uploadPost}>
-          Upload an image of your pet
-        </Link>
-
         {!loading && posts?.length > 0 && (
           <>
-            <h3>Your Posts</h3>
+            <h3 className={styles.postHeader}>Your Posts</h3>
 
             <div className={styles.grid}>
               {posts.map(post => (
                 <PostItem
                   post={post.data}
-                  onDelete={onDelete}
-                  onEdit={onEdit}
+                  onDelete={() => onDelete(post.id)}
+                  // onEdit={() => onEdit(post.id)}
                   id={post.id}
                   key={post.id}
                 />
               ))}
             </div>
           </>
+        )}
+
+        {!changeDetails && (
+          <div className={styles.uploadDiv}>
+            <Link to='/create-post' className={styles.uploadPost}>
+              Upload an image of your pet!
+            </Link>
+          </div>
         )}
       </main>
     </div>

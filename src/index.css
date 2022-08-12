@@ -17,10 +17,10 @@
 }
 
 :root {
-  --primary: #0082c8;
+  --primary: #e20074;
   --white: #fff;
   --black: #000;
-  --grey: #8f8f8f;
+  --washed: #f2f4f8;
 }
 
 html {
@@ -35,7 +35,7 @@ body {
   font-size: 1.6rem;
 }
 
-/* Might Change This Later */
+/* Might Change media query Later */
 @media only screen and (max-width: 75em) {
   body {
     padding-bottom: 10rem;
@@ -45,6 +45,7 @@ body {
     display: grid;
 
     grid-template-columns:
+      [full-start]
       minmax(auto, 1fr)
       [center-start] repeat(8, [col-start] minmax(min-content, 1fr) [col-end])
       [center-end] 1fr [full-end];
