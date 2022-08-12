@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ReactComponent as UserIcon } from '../assets/svg/personIcon.svg';
-import { ReactComponent as AddIcon } from '../assets/svg/addIcon2.svg';
+import { ReactComponent as AddIcon } from '../assets/svg/addIcon.svg';
 import { ReactComponent as HomeIcon } from '../assets/svg/homeIcon.svg';
 import styles from './Navbar.module.css';
 

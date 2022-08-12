@@ -1,7 +1,6 @@
-import { Link } from 'react-router-dom';
 import { ReactComponent as DeleteIcon } from '../assets/svg/deleteIcon.svg';
 import { ReactComponent as EditIcon } from '../assets/svg/editIcon.svg';
-import shareIcon from '../assets/svg/shareIcon.svg';
+// import shareIcon from '../assets/svg/shareIcon.svg';
 import styles from './PostItem.module.css';
 
 const PostItem = ({ post, id, onDelete, onEdit }) => {

@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import {
   collection,
   getDocs,
   query,
   orderBy,
   limit,
-  startAfter,
+  // startAfter,
 } from 'firebase/firestore';
 import { db } from '../firebase.config';
 import { toast } from 'react-toastify';
@@ -18,7 +17,6 @@ import styles from './Home.module.css';
 const Home = () => {
   const [posts, setPosts] = useState(null);
   const [loading, setLoading] = useState(true);
-  const params = useParams();
 
   useEffect(() => {
     const fetchPosts = async () => {
