@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Navbar from './components/Navbar';
 import Header from './components/Header';
 import PrivateRoute from './components/PrivateRoute';
+import Welcome from './pages/Welcome';
 import Home from './pages/Home';
 import CreatePost from './pages/CreatePost';
 import Profile from './pages/Profile';
@@ -17,12 +18,20 @@ function App() {
       <Router>
         <Header />
         <Navbar />
+
         <Routes>
-          <Route path='/' element={<Home />} />
+          <Route path='/' element={<Welcome />} />
+
+          <Route path='/home' element={<PrivateRoute page='/' />}>
+            <Route path='/home' element={<Home />} />
+          </Route>
+
           <Route path='/create-post' element={<CreatePost />} />
-          <Route path='/profile' element={<PrivateRoute />}>
+
+          <Route path='/profile' element={<PrivateRoute page='/sign-in' />}>
             <Route path='/profile' element={<Profile />} />
           </Route>
+
           <Route path='/sign-in' element={<SignIn />} />
           <Route path='/sign-up' element={<SignUp />} />
           <Route path='/forgot-password' element={<ForgotPassword />} />

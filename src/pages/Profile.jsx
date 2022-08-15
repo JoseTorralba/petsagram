@@ -131,6 +131,7 @@ function Profile() {
       );
     } catch (err) {
       toast.error('Image must be at least 2MB or less!');
+      setLoading(false);
     }
   };
 
@@ -180,17 +181,14 @@ function Profile() {
               photoURL ? photoURL : auth.currentUser.photoURL
             })`,
           }}
-        >
-          {/* <img
-            src={photoURL ? photoURL : auth.currentUser.photoURL}
-            alt='Profile Avatar'
-            className={styles.img}
-          /> */}
-        </div>
+        ></div>
 
         {changeDetails && (
           <div className={styles.changeImgDiv}>
             <p className={styles.changeImgText}>Change Profile Image</p>
+            <p className={styles.changeImgSubText}>
+              Must be at least 2MB or less!
+            </p>
             <input
               className={styles.changeImgInput}
               type='file'
@@ -246,7 +244,7 @@ function Profile() {
         {!changeDetails && (
           <div className={styles.uploadDiv}>
             <Link to='/create-post' className={styles.uploadPost}>
-              Upload an image of your pet!
+              Upload an Image
             </Link>
           </div>
         )}

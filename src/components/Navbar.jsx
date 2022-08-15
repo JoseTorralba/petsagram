@@ -16,7 +16,7 @@ const Navbar = () => {
 
   return (
     <div className={styles.container}>
-      <Link to='/' className={styles.title}>
+      <Link to='/home' className={styles.title}>
         Petsagram
       </Link>
 
@@ -24,19 +24,21 @@ const Navbar = () => {
         <ul className={styles.list}>
           <li
             className={
-              pathMatchRoute('/') ? `${styles.itemActive}` : `${styles.item}`
+              pathMatchRoute('/home')
+                ? `${styles.itemActive}`
+                : `${styles.item}`
             }
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/home')}
           >
             <HomeIcon
               className={styles.icon}
-              fill={pathMatchRoute('/') ? '#fff' : '#8f8f8f'}
+              fill={pathMatchRoute('/home') ? '#fff' : '#8f8f8f'}
               width='36px'
               height='36px'
             />
             <p
               className={
-                pathMatchRoute('/') ? `${styles.active}` : `${styles.name}`
+                pathMatchRoute('/home') ? `${styles.active}` : `${styles.name}`
               }
             >
               Home

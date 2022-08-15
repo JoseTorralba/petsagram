@@ -4,7 +4,7 @@ import styles from './Header.module.css';
 const Header = () => {
   return (
     <div className={styles.container}>
-      <Link to='/' className={styles.titleLink}>
+      <Link to='/home' className={styles.titleLink}>
         Petsagram
       </Link>
     </div>

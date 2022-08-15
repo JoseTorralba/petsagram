@@ -171,7 +171,6 @@ const CreatePost = () => {
             onChange={onMutate}
             max='6'
             accept='.jpg,.png,.jpeg'
-            multiple
             required
           />
 

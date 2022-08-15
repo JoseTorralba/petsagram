@@ -56,7 +56,7 @@ function SignIn() {
 
       await setDoc(doc(db, 'users', user.uid), formDataCopy);
 
-      navigate('/');
+      navigate('/home');
 
       // Auth Error Handler
     } catch (err) {

@@ -2,14 +2,14 @@ import { Navigate, Outlet } from 'react-router-dom';
 import { useAuthStatus } from '../hooks/useAuthStatus';
 import Loading from './Loading';
 
-const PrivateRoute = () => {
+const PrivateRoute = ({ page }) => {
   const { loggedIn, checkingStatus } = useAuthStatus();
-
+  console.log(loggedIn);
   if (checkingStatus) {
     return <Loading />;
   }
 
-  return loggedIn ? <Outlet /> : <Navigate to='/sign-in' />;
+  return loggedIn ? <Outlet /> : <Navigate to={page} />;
 };
 
 export default PrivateRoute;

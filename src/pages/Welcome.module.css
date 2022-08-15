@@ -1,0 +1,130 @@
+.container {
+  align-items: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right;
+  background-image: linear-gradient(
+      to left,
+      rgba(242, 244, 248, 0.1),
+      rgba(242, 244, 248, 0.5)
+    ),
+    url(../assets/img/background.png);
+  display: flex;
+  grid-column: full-start / full-end;
+  height: 100vh;
+  position: relative;
+}
+
+.header {
+  padding-left: 4rem;
+}
+
+.title {
+  color: #000;
+  font-size: 5rem;
+  margin-bottom: 1rem;
+}
+
+.subTitle {
+  font-size: 2rem;
+  color: #e20074;
+}
+
+.buttons {
+  display: block;
+  margin-top: 5rem;
+}
+
+.buttonMain {
+  background-color: #fff;
+  color: #000;
+  margin-right: 2rem;
+}
+
+.buttonSub {
+  background-color: #e20074;
+  color: #fff;
+}
+.buttonMain,
+.buttonSub {
+  align-items: center;
+
+  border: none;
+  border-radius: 3rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  cursor: pointer;
+
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 1.5rem 6rem;
+
+  text-decoration: none;
+}
+@media only screen and (max-width: 20em) {
+}
+
+@media only screen and (max-width: 75em) {
+  .container {
+    background-position: calc(100% - 20px) calc(100% - 25px);
+    grid-column: full-start / full-end;
+    width: 100%;
+  }
+
+  .header {
+    padding-left: 0;
+    position: absolute;
+    top: 40%;
+    left: 25%;
+    transform: translate(-50%, -20%);
+  }
+}
+
+@media only screen and (max-width: 56.25em) {
+  .subTitle {
+    font-size: 1.6rem;
+    color: #e20074;
+  }
+
+  .buttonMain,
+  .buttonSub {
+    padding: 1rem 4rem;
+  }
+}
+
+@media only screen and (max-width: 37.5em) {
+  .buttonMain {
+    margin-right: 1rem;
+  }
+
+  .header {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+  }
+}
+
+@media only screen and (max-width: 30em) {
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .buttonMain {
+    margin-right: 0;
+    margin-bottom: 2rem;
+  }
+}
+
+@media only screen and (max-width: 20em) {
+  .header {
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+  }
+
+  .container {
+    background-image: none;
+  }
+}

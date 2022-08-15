@@ -48,21 +48,9 @@
   margin-bottom: 3rem;
 }
 
-/* Messing with PostItem */
 .profile {
   text-align: center;
 }
-
-/* .imgDiv {
-  margin: 0 auto 3rem;
-  width: 20rem;
-  height: 20rem;
-  position: relative;
-  overflow: hidden;
-  border-radius: 50%;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  display: flex;
-} */
 
 .profileImgDiv {
   margin: 0 auto 3rem;
@@ -82,7 +70,13 @@
 
 .changeImgText {
   font-weight: 600;
-  margin-bottom: 1.4rem;
+}
+
+.changeImgSubText {
+  color: #e20074;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0.6rem 0 1.6rem;
 }
 
 .changeImgInput {
@@ -127,12 +121,11 @@
 .profileName {
   border: none;
   background-color: #f2f4f8;
-  color: #000;
+  color: #000 !important;
   text-align: center;
 }
 
 .profileNameActive {
-  color: #1e1e1e;
   padding: 0.8rem 1rem;
   font-size: 1.5rem;
 }
@@ -161,6 +154,7 @@
 @media only screen and (max-width: 75em) {
   .container {
     grid-column: center-start / center-end;
+    padding: 12rem 0;
   }
 }
 

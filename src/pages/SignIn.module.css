@@ -102,6 +102,12 @@
   text-decoration: none;
 }
 
+@media only screen and (max-width: 75em) {
+  .container {
+    padding: 12rem 0;
+  }
+}
+
 @media only screen and (max-width: 56.25em) {
   .container {
     grid-column: center-start / center-end;

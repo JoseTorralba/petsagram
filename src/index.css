@@ -4,7 +4,7 @@
 *::after {
   margin: 0;
   padding: 0;
-  box-sizing: inherit;
+  box-sizing: border-box;
 }
 
 .app {
@@ -28,22 +28,16 @@ html {
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
   background-color: #f2f4f8;
-  margin: 0;
   box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
   font-size: 1.6rem;
+  margin: 0;
 }
 
-/* Might Change media query Later */
 @media only screen and (max-width: 75em) {
-  body {
-    padding-bottom: 10rem;
-  }
-
   .app {
     display: grid;
-
     grid-template-columns:
       [full-start]
       minmax(auto, 1fr)

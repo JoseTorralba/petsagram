@@ -41,7 +41,7 @@ function SignIn() {
       );
 
       if (userCredential.user) {
-        navigate('/');
+        navigate('/home');
       }
 
       // Auth Error Handler

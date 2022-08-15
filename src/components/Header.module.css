@@ -17,5 +17,7 @@
   .container {
     display: block;
     background-color: #fff;
+    position: fixed;
+    width: 100%;
   }
 }
