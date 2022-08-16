@@ -4,6 +4,21 @@ import { ReactComponent as EditIcon } from '../assets/svg/editIcon.svg';
 import styles from './PostItem.module.css';
 
 const PostItem = ({ post, id, onDelete, onEdit }) => {
+  const years = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+
   return (
     <div className={styles.postDiv}>
       <div className={styles.profileDiv}>
@@ -43,7 +58,14 @@ const PostItem = ({ post, id, onDelete, onEdit }) => {
       <div className={styles.infoDiv}>
         <p className={styles.infoName}>{post.petName}</p>
         <div className={styles.infoDesc}>
-          <p>{post.description}</p>
+          <p className={styles.infoText}>{post.description}</p>
+
+          <p className={styles.infoDate}>
+            {years[post.timestamp.toDate().getMonth()]}{' '}
+            {post.timestamp.toDate().getDate()}
+            {', '}
+            {post.timestamp.toDate().getFullYear()}
+          </p>
         </div>
       </div>
     </div>

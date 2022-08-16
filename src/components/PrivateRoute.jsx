@@ -4,7 +4,6 @@ import Loading from './Loading';
 
 const PrivateRoute = ({ page }) => {
   const { loggedIn, checkingStatus } = useAuthStatus();
-  console.log(loggedIn);
   if (checkingStatus) {
     return <Loading />;
   }

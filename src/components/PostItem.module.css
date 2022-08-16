@@ -9,9 +9,10 @@
 .profileDiv {
   align-items: center;
   background-color: #fff;
-  border-bottom: 1.5px solid #000;
+
   display: flex;
   justify-content: space-between;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   padding: 1rem;
 }
 
@@ -76,8 +77,20 @@
   font-size: 1.5rem;
   font-weight: 500;
   display: flex;
-  align-items: center;
-  height: 6rem;
+  flex-direction: column;
+  height: 10rem;
+  text-align: left;
 
-  padding: 4.5rem 1rem;
+  padding: 2rem 1rem;
+  justify-content: space-between;
+}
+
+.infoText {
+  margin-bottom: 1rem;
+}
+
+.infoDate {
+  color: var(--grey);
+  font-size: 1.2rem;
+  font-weight: 600;
 }
