@@ -2,6 +2,7 @@ import { ReactComponent as DeleteIcon } from '../assets/svg/deleteIcon.svg';
 import { ReactComponent as EditIcon } from '../assets/svg/editIcon.svg';
 // import shareIcon from '../assets/svg/shareIcon.svg';
 import styles from './PostItem.module.css';
+import defaultAvatar from '../assets/img/avatar.png';
 
 const PostItem = ({ post, id, onDelete, onEdit }) => {
   const years = [
@@ -26,7 +27,9 @@ const PostItem = ({ post, id, onDelete, onEdit }) => {
           <div
             className={styles.profileImgDiv}
             style={{
-              backgroundImage: `url(${post.userImg})`,
+              backgroundImage: `${
+                null ? `url(${defaultAvatar})` : `url(${post.userImg})`
+              }`,
             }}
           ></div>
           <p className={styles.profileName}>{post.userName}</p>
