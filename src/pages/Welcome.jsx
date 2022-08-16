@@ -8,7 +8,7 @@ const Welcome = () => {
         <div className={styles.header}>
           <h1 className={styles.title}>Petsagram</h1>
           <h2 className={styles.subTitle}>
-            Share you furry friend to the world!
+            Share your furry friend to the world!
           </h2>
 
           <div className={styles.buttons}>

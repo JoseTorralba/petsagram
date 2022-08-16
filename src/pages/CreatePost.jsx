@@ -85,7 +85,9 @@ const CreatePost = () => {
             }
           },
           error => {
-            reject(error);
+            reject(error.code);
+            toast.error('Image is bigger than 2MB!');
+            setLoading(false);
           },
           () => {
             getDownloadURL(uploadTask.snapshot.ref).then(downloadURL => {
@@ -108,10 +110,9 @@ const CreatePost = () => {
 
     await addDoc(collection(db, 'posts'), formDataCopy);
 
-    // setLoading(false)
     setLoading(false);
     toast.success('Post Created!');
-    navigate('/');
+    navigate('/home');
   };
 
   const onMutate = e => {
@@ -169,7 +170,7 @@ const CreatePost = () => {
             type='file'
             id='image'
             onChange={onMutate}
-            max='6'
+            max='1'
             accept='.jpg,.png,.jpeg'
             required
           />
