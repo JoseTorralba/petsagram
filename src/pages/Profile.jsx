@@ -138,10 +138,12 @@ function Profile() {
   // Deletes Post
   const onDelete = async postId => {
     if (window.confirm('Are you sure you want to delete?')) {
+      setLoading(true);
       await deleteDoc(doc(db, 'posts', postId));
       const updatedPosts = posts.filter(post => post.id !== postId);
       setPosts(updatedPosts);
       toast.success('Post successfully deleted!');
+      setLoading(false);
     }
   };
 
